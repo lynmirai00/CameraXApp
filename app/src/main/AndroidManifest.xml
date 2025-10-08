@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CameraXApp">
         <activity
+            android:name=".VideoActivity"
+            android:exported="false" />
+        <activity
             android:name=".CompleteActivity"
             android:exported="false" />
         <activity
