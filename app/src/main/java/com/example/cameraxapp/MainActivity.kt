@@ -105,10 +105,16 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults){
+                    /*
                     val bitmap = BitmapFactory.decodeFile(photoFile.absolutePath)
 
                     val intent = Intent(this@MainActivity, CompleteActivity::class.java)
                     intent.putExtra("captured_bitmap", bitmapToByteArray(bitmap))
+                    startActivity(intent)
+                    */
+                    val imagePath = photoFile.absolutePath
+                    val intent = Intent(this@MainActivity, CompleteActivity::class.java)
+                    intent.putExtra("image_path", imagePath)
                     startActivity(intent)
                 }
             }
@@ -179,10 +185,10 @@ class MainActivity : AppCompatActivity() {
             val preview = Preview.Builder()
                 .build()
                 .also { it.setSurfaceProvider(viewBinding.viewFinder.surfaceProvider) }
-            /*
+
             imageCapture = ImageCapture.Builder()
                 .build()
-
+            /*
             val imageAnalyzer = ImageAnalysis.Builder()
                 .build()
                 .also {
@@ -205,7 +211,7 @@ class MainActivity : AppCompatActivity() {
 
                 // Bind use cases to camera
                 //cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture, imageAnalyzer)
-                cameraProvider.bindToLifecycle(this, cameraSelector, preview, videoCapture)
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture, videoCapture)
             } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
             }
